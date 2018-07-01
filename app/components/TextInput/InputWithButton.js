@@ -21,7 +21,6 @@ const InputWithButton = (props) => {
         underlayColor={underlayColor}
         style={styles.buttonContainer}
         onPress={onPress}
-        disabled
       >
         <Text style={styles.buttonText}>{buttonText}</Text>
       </TouchableHighlight>
