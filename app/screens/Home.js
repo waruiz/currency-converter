@@ -49,7 +49,7 @@ class Home extends Component {
             onPress={this.handlePressBaseCurrency}
             defaultValue={this.props.amount.toString()}
             keyboardType="numeric"
-            onChangeText={this.props.handleTextChange}
+            onChangeText={value => this.props.handleTextChange(value)}
           />
           <InputWithButton
             buttonText={this.props.quoteCurrency}
@@ -75,20 +75,20 @@ const mapStateToProps = (store) => {
     baseCurrency, quoteCurrency, amount, conversions,
   } = store.currencies;
   return {
-    baseCurrency, quoteCurrency, amount, conversions,
+    baseCurrency,
+    quoteCurrency,
+    amount,
+    conversions,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const { amount } = ownProps;
-  return {
-    handleTextChange: (amount) => {
-      dispatch(changeCurrencyAmount(amount));
-    },
-    handleSwapCurrency: () => {
-      dispatch(swapCurrency());
-    },
-  };
-};
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  handleTextChange: (amount) => {
+    dispatch(changeCurrencyAmount(amount));
+  },
+  handleSwapCurrency: () => {
+    dispatch(swapCurrency());
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
