@@ -93,7 +93,7 @@ const mapStateToProps = (store) => {
     amount,
     lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
     conversionRate: rates[quoteCurrency] || 0,
-    isFetching: isFetching || true,
+    isFetching,
   };
 };
 
